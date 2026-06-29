@@ -1,9 +1,25 @@
+# Environment
+.env
+.env.*
+
 # Python
 venv/
 __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Logging
+*.log
 
 # IDE
 .idea/
