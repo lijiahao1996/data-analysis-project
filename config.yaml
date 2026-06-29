@@ -1,0 +1,72 @@
+# 电商经营分析项目全局配置
+
+project:
+  name: "优品汇电商经营分析"
+  version: "2.0"
+
+database:
+  type: mysql
+  host: localhost
+  port: 3306
+  user: root
+  password: ""
+  database: olist_ecommerce
+  charset: utf8mb4
+
+data:
+  raw_dir: data/rebranded
+  processed_dir: data/processed
+  cutoff_date: "2018-10-17"  # Olist 数据集截止日期
+
+thresholds:
+  churn:
+    method: "p75_multiplier"
+    percentile: 75
+    multiplier: 2
+    min_orders: 2  # 用于计算购买间隔的最小订单数
+  low_review_score: 2
+  delivery_delay_severe_days: 7
+
+model:
+  test_size: 0.2
+  cv_folds: 5
+  random_state: 42
+  smote_enabled: true
+
+rfm:
+  quartile_bins: 4
+
+kmeans:
+  max_k: 8
+  min_k: 2
+
+psm:
+  caliper: 0.05
+  matching_ratio: 1  # 1:1 匹配
+  smd_threshold: 0.1
+
+margin_rates:
+  # 基于行业基准假设（中文品类名，与 rebranded 数据一致）
+  电脑配件: 0.12
+  数码电子: 0.15
+  手机通讯: 0.30
+  美妆个护: 0.50
+  运动户外: 0.40
+  家居装饰: 0.35
+  家居日用: 0.42
+  汽车用品: 0.25
+  玩具: 0.40
+  创意潮品: 0.35
+  家用电器: 0.30
+  服饰: 0.45
+  default: 0.30
+
+output:
+  plots_dir: data/processed/plots
+  models_dir: models
+  reports_dir: report
+  logs_dir: logs
+
+logging:
+  level: INFO
+  file: logs/pipeline.log
