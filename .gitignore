@@ -12,7 +12,8 @@ __pycache__/
 *.swo
 
 # Project artifacts (generated, not source)
-data/
+data/olist.db
+data/processed/
 logs/
 models/
 report/
